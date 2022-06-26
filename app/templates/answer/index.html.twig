@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.question_details'|trans }}
+{% endblock %}
+
+{% block body %}
+
+    {% if question is defined and question|length %}
+        <h1>{{ 'title.question_details'|trans({'%id%': question.id|default('')}) }}</h1>
+        <div>
+            <a id="back" href="{{ url('category_show', {id: question.category.id}) }}" class="create_button btn btn-outline-secondary">
+                {{ 'action.back_to_list'|trans }}
+            </a>
+        </div>
+        <div class="d-flex w-100 row">
+            <div class="col-4">
+                <div class="card text-white bg-info mb-3 d-block ml-2 mr-2">
+                    <div class="card-header"><h5 class="card-title">{{  question.title }}</h5></div>
+                    <div class="card-body">
+                        <p class="card-text">{{  question.content }}</p>
+                        <footer style="margin-bottom: 10px; color:whitesmoke;" class="blockquote-footer">{{ 'created'|trans }} <cite title="Source Title">{{ question.nickname }}</cite> {{ question.createdAt|date('Y/m/d') }}</footer>
+                        <p><i> </i></p>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column col-8">
+                {% for answer in question.answers %}
+                    <div class="card border-warning mb-3 ml-2 mr-2">
+                        <div class="card-header"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Odpowiedz
+                            {% if answer.isIsBest() == true %}
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            {% endif %}
+                        </div>
+
+                        <div class="card-body text-warning">
+                            <p class="card-text">{{ answer.content }}</p>
+                            <footer style="margin-bottom: 10px; " class="blockquote-footer">{{ 'created'|trans }} <cite title="Source Title">{{ answer.nickname }}</cite> {{ answer.createdAt|date('Y/m/d') }}</footer>
+                            {% if is_granted("ROLE_ADMIN") %}
+                                <a class="btn btn-outline-warning" href="{{ url('answer_best', {id: answer.id}) }}" title="{{ 'action.is_best_options'|trans }}">
+                                    <i class="fa fa-star" aria-hidden="true"></i> {{ 'action.is_best_options'|trans }}
+                                </a>
+                                <a class="btn btn-outline-info" href="{{ url('answer_edit', {id: answer.id}) }}" title="{{ 'action.edit'|trans }}">
+                                    <i class="fa fa-wrench" aria-hidden="true"></i> {{ 'action.edit'|trans }}
+                                </a>
+                                <a class="btn btn-outline-danger" href="{{ url('answer_delete', {id: answer.id}) }}" title="{{ 'action.delete'|trans }}">
+                                    <i class="fa fa-trash" aria-hidden="true"></i> {{ 'action.delete'|trans }}
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="card border-info mb-3 ml-2 mr-2">
+                    <div class="card-header"><i class="fa fa-commenting" aria-hidden="true"></i> Dodaj odpowiedź</div>
+                    <div class="p-4">
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <div  class="form-group row float-sm-right d-block ml-auto mr-auto">
+                            <input type="submit" value="{{ 'action.save'|trans }}" class="btn btn-outline-warning">
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <p>
+            {{ 'message.empty_list'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

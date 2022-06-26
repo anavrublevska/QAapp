@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'label.edit_email'|trans({'%id%': user.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'label.edit_email'|trans({'%id%': user.id|default('')}) }}</h1>
+    <div>
+        <a id="back" href="{{ url('my_account', {'id': app.user.id})}}" class="btn btn-outline-secondary">
+            {{ 'action.back_to_list'|trans }}
+        </a>
+    </div>
+    <div id="form1">
+        {{ form_start(form, { method: 'PUT', action: url('email_edit', {id: user.id}) }) }}
+        {{ form_widget(form) }}
+        <div id="save">
+            <input type="submit" value="{{ 'action.save'|trans }}" class="btn btn-outline-success" />
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+{% endblock %}

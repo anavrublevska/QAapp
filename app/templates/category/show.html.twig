@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.category_details'|trans({'%id%': category.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.category_details'|trans({'%id%': category.id|default('')}) }}</h1>
+    <div>
+        <a id="back" href="{{ url('category_index') }}" class="create_button btn btn-outline-secondary">
+            {{ 'action.back_to_list'|trans }}
+        </a>
+
+    </div>
+    {% if category is defined and category|length %}
+        <div class="d-flex w-100">
+            <div class="w-25">
+                <div class="w-75 card text-center d-block ml-auto mr-auto" >
+                    <div class="card-body">
+                        <h5 class="card-title">{{ category.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ category.createdAt|date('Y/m/d') }}</h6>
+                    </div>
+                </div>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <a href="{{ url('question_create') }}" class="w-50 d-block ml-auto mr-auto mt-3 btn btn-outline-info">
+                        {{ 'button.question_create'|trans }}
+                    </a>
+                {% endif %}
+            </div>
+            <div class="d-flex flex-column w-75">
+                {% for question in category.questions %}
+                    <div class="card w-75 text-center d-block mr-auto" style="margin-bottom: 15px;">
+                        <h5 class="card-header"><i class="fa fa-question" aria-hidden="true"></i> {{ question.title }} ( {{ 'count_answers'|trans }} {{ question.answers|length }} )</h5>
+                        <div class="card-body">
+                            <p class="card-text">{{ question.content }}</p>
+                            <a href="{{ url('question_show', {id: question.id}) }}" class="btn btn-outline-warning"
+                               title="{{ 'button.see_answers'|trans }}"><i class="fa fa-sticky-note" aria-hidden="true"></i> {{ 'button.see_answers'|trans }}
+                            </a>
+                            {% if is_granted("ROLE_ADMIN") %}
+                                <a class="btn btn-outline-info" href="{{ url('question_edit', {id: question.id}) }}" title="{{ 'action.edit'|trans }}">
+                                    <i class="fa fa-wrench" aria-hidden="true"></i> {{ 'action.edit'|trans }}
+                                </a>
+                                {% if not question.answers|length %}
+                                    <a class="btn btn-outline-danger" href="{{ url('question_delete', {id: question.id}) }}" title="{{ 'action.delete'|trans }}">
+                                        <i class="fa fa-trash" aria-hidden="true"></i> {{ 'action.delete'|trans }}
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+
+                            <footer class="blockquote-footer">{{ 'created'|trans }} <cite title="Source Title">{{ question.nickname }}</cite> {{ question.createdAt|date('Y/m/d') }}</footer>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <p>
+            {{ 'message.record_not_found'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

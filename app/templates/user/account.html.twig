@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.my_account'|trans }}
+{% endblock %}
+
+{% block body %}
+    {% if user is defined and user|length %}
+        <div class="center">
+            <h2>{{ 'title.my_account'|trans }}</h2>
+            <dl>
+                <dt>{{ 'email' }}</dt>
+                <dd>{{ user.email }}</dd>
+            </dl>
+            <a class="btn btn-outline-secondary" href="{{ url('email_edit', {'id': user.id}) }}">{{'label.edit_email'|trans}}</a>
+            <a class="btn btn-outline-secondary" href="{{ url('change_password', {'id': user.id}) }}">{{'label.change_password'|trans}}</a>
+        </div>
+    {% else %}
+        <p>
+            {{ 'message.empty_list'|trans }}
+        </p>
+    {% endif %}
+{% endblock  %}

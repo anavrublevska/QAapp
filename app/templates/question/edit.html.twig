@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.question_edit'|trans({'%id%': question.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.question_edit'|trans({'%id%': question.id|default('')}) }}</h1>
+    <div>
+        <a id="back" href="{{ url('category_show', {id: question.category.id}) }}" class="create_button btn btn-outline-secondary">
+            {{ 'action.back_to_list'|trans }}
+        </a>
+    </div>
+    <div id="form1">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div id="save">
+            <input type="submit" value="{{ 'action.save'|trans }}" class="btn btn-outline-warning" />
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

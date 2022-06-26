@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="pl" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="title.answer_edit">
+        <source>title.answer_edit</source>
+        <target>Edycja odpowiedzi</target>
+      </trans-unit>
+      <trans-unit id="action.back_to_list">
+        <source>action.back_to_list</source>
+        <target>Powrót</target>
+      </trans-unit>
+      <trans-unit id="action.save">
+        <source>action.save</source>
+        <target>Zapisz</target>
+      </trans-unit>
+      <trans-unit id="title.answer_delete">
+        <source>title.answer_delete</source>
+        <target>Usuń odpowiedź</target>
+      </trans-unit>
+      <trans-unit id="title.mark_as_best">
+        <source>title.mark_as_best</source>
+        <target>Odznacz jako najlepszą</target>
+      </trans-unit>
+      <trans-unit id="title.question_details">
+        <source>title.question_details</source>
+        <target>Pytanie i odpowiedzi</target>
+      </trans-unit>
+      <trans-unit id="created">
+        <source>created</source>
+        <target>Utworzono</target>
+      </trans-unit>
+      <trans-unit id="action.is_best_options">
+        <source>action.is_best_options</source>
+        <target>Najlepsza</target>
+      </trans-unit>
+      <trans-unit id="action.edit">
+        <source>action.edit</source>
+        <target>Edytuj</target>
+      </trans-unit>
+      <trans-unit id="action.delete">
+        <source>action.delete</source>
+        <target>Usuń</target>
+      </trans-unit>
+      <trans-unit id="message.empty_list">
+        <source>message.empty_list</source>
+        <target>Lista jest pusta</target>
+      </trans-unit>
+      <trans-unit id="title.category_create">
+        <source>title.category_create</source>
+        <target>Tworzenie kategorii</target>
+      </trans-unit>
+      <trans-unit id="title.category_delete">
+        <source>title.category_delete</source>
+        <target>Usuwanie kategorii</target>
+      </trans-unit>
+      <trans-unit id="confirm">
+        <source>confirm</source>
+        <target>Potwierdzenie</target>
+      </trans-unit>
+      <trans-unit id="title.category_edit">
+        <source>title.category_edit</source>
+        <target>Edycja kategorii</target>
+      </trans-unit>
+      <trans-unit id="title.category_list">
+        <source>title.category_list</source>
+        <target>Kategorie</target>
+      </trans-unit>
+      <trans-unit id="action.create">
+        <source>action.create</source>
+        <target>Utwórz</target>
+      </trans-unit>
+      <trans-unit id="action.show">
+        <source>action.show</source>
+        <target>Szczegóły</target>
+      </trans-unit>
+      <trans-unit id="title.category_details">
+        <source>title.category_details</source>
+        <target>Pytania kategorii</target>
+      </trans-unit>
+      <trans-unit id="button.question_create">
+        <source>button.question_create</source>
+        <target>Utwórz pytanie</target>
+      </trans-unit>
+      <trans-unit id="count_answers">
+        <source>count_answers</source>
+        <target>Liczba odpowiedzi:</target>
+      </trans-unit>
+      <trans-unit id="button.see_answers">
+        <source>button.see_answers</source>
+        <target>Zobacz odpowiedzi</target>
+      </trans-unit>
+      <trans-unit id="message.record_not_found">
+        <source>message.record_not_found</source>
+        <target>Nie ma rekordu</target>
+      </trans-unit>
+      <trans-unit id="title.question_create">
+        <source>title.question_create</source>
+        <target>Tworzenie pytania</target>
+      </trans-unit>
+      <trans-unit id="title.question_delete">
+        <source>title.question_delete</source>
+        <target>Usuwanie pytania</target>
+      </trans-unit>
+        <trans-unit id="title.question_edit">
+        <source>title.question_edit</source>
+      <target>Edycja pytania</target>
+      </trans-unit>
+      <trans-unit id="title.question_list">
+        <source>title.question_list</source>
+        <target>Lista pytań</target>
+      </trans-unit>
+      <trans-unit id="label.id">
+        <source>label.id</source>
+        <target>Id</target>
+      </trans-unit>
+      <trans-unit id="label.created_at">
+        <source>label.created_at</source>
+        <target>Utworzono</target>
+      </trans-unit>
+      <trans-unit id="label.updated_at">
+        <source>label.updated_at</source>
+        <target>Zmieniono</target>
+      </trans-unit>
+      <trans-unit id="label.title">
+        <source>label.title</source>
+        <target>Nazwa</target>
+      </trans-unit>
+      <trans-unit id="label.content">
+        <source>label.content</source>
+        <target>Treść</target>
+      </trans-unit>
+      <trans-unit id="label.email">
+        <source>label.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="nav.category_index">
+        <source>nav.category_index</source>
+        <target>Kategorie</target>
+      </trans-unit>
+      <trans-unit id="nav.question_index">
+        <source>nav.question_index</source>
+        <target>Pytania</target>
+      </trans-unit>
+      <trans-unit id="nav.my_account">
+        <source>nav.my_account</source>
+        <target>Mój profil</target>
+      </trans-unit>
+      <trans-unit id="message.deleted_successfully">
+        <source>message.deleted_successfully</source>
+        <target>Pomyślnie usunięto</target>
+      </trans-unit>
+      <trans-unit id="message.edited_successfully">
+        <source>message.edited_successfully</source>
+        <target>Edycja zapisana!</target>
+      </trans-unit>
+      <trans-unit id="message.created_successfully">
+        <source>message.created_successfully</source>
+        <target>Pomyślnie utworzono</target>
+      </trans-unit>
+      <trans-unit id="message.category_contains_questions">
+        <source>message.category_contains_questions</source>
+        <target>CKategoria zawiera pytania. Nie można usunąć.</target>
+      </trans-unit>
+        <trans-unit id="message.added_answer">
+        <source>message.added_answer</source>
+      <target>Twoja odpowiedź została dodana</target>
+      </trans-unit>
+      <trans-unit id="message.question_contains_answers">
+        <source>message.question_contains_answers</source>
+        <target>Nie można usunąć, ponieważ pytanie zawiera odpowiedzi!</target>
+      </trans-unit>
+      <trans-unit id="label.nickname">
+        <source>label.nickname</source>
+        <target>Nickname</target>
+      </trans-unit>
+      <trans-unit id="label.category">
+        <source>label.category</source>
+        <target>Kategoria</target>
+      </trans-unit>
+      <trans-unit id="label.actions">
+        <source>label.actions</source>
+        <target>Akcje</target>
+      </trans-unit>
+      <trans-unit id="label.edit">
+        <source>label.edit</source>
+        <target>Edycja</target>
+      </trans-unit>
+      <trans-unit id="label.delete">
+        <source>label.delete</source>
+        <target>Usuwanie</target>
+      </trans-unit>
+      <trans-unit id="title.my_account">
+        <source>title.my_account</source>
+        <target>Mój profil</target>
+      </trans-unit>
+      <trans-unit id="label.edit_email">
+        <source>label.edit_email</source>
+        <target>Edycja emailu</target>
+      </trans-unit>
+      <trans-unit id="label.description">
+        <source>label.description</source>
+        <target>Opis</target>
+      </trans-unit>
+      <trans-unit id="label.change_password">
+        <source>label.change_password</source>
+        <target>Zmiana hasła</target>
+      </trans-unit>
+      <trans-unit id="action.logout">
+        <source>action.logout</source>
+        <target>Wyloguj</target>
+      </trans-unit>
+      <trans-unit id="label_isBest">
+        <source>label_isBest</source>
+        <target>Jest najlepsza</target>
+      </trans-unit>
+      <trans-unit id="action.login">
+        <source>action.login</source>
+        <target>Zaloguj</target>
+      </trans-unit>
+      <trans-unit id="message.updated_successfully">
+        <source>message.updated_successfully</source>
+        <target>Zmiany zapisane</target>
+      </trans-unit>
+      <trans-unit id="you_are_logged_as">
+        <source>you_are_logged_as</source>
+        <target>Jesteś zalogowany jako</target>
+      </trans-unit>
+      <trans-unit id="please_sign_in">
+        <source>please_sign_in</source>
+        <target>Proszę się zalogować</target>
+      </trans-unit>
+      <trans-unit id="label.password">
+        <source>label.password</source>
+        <target>Hasło</target>
+      </trans-unit>
+      <trans-unit id="action.sign_in">
+        <source>action.sign_in</source>
+        <target>Zaloguj</target>
+      </trans-unit>
+      <trans-unit id="label.none">
+        <source>label.none</source>
+        <target>Nie wybrano</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

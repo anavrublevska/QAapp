@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.question_list'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.question_list'|trans }}</h1>
+    <a id="back" href="{{ url('question_create') }}" class="create_button btn btn-outline-info">
+        {{ 'button.question_create'|trans }}
+    </a>
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'question.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'question.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'question.updatedAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'question.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.content'|trans, 'question.content') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.email'|trans, 'question.email') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.nickname'|trans, 'question.nickname') }}</th>
+                <th>{{ 'label.category'|trans }}</th>
+                <th>{{ 'label.actions'|trans }}</th>
+                <th>{{ 'label.edit'|trans }}</th>
+                <th>{{ 'label.delete'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for question in pagination.items %}
+                <tr>
+                    <td>{{ question.id }}</td>
+                    <td>{{ question.createdAt|date('Y/m/d') }}</td>
+                    <td>{{ question.updatedAt|date('Y/m/d') }}</td>
+                    <td>{{ question.title }}</td>
+                    <td>{{ question.content }}</td>
+                    <td>{{ question.email }}</td>
+                    <td>{{ question.nickname }}</td>
+                    <td>{{ question.category.name }}</td>
+                    <td>
+                        <a href="{{ url('question_show', {id: question.id}) }}" title="{{ 'action.show'|trans }}">
+                            {{ 'action.show'|trans }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ url('question_edit', {id: question.id}) }}" title="{{ 'action.edit'|trans }}">
+                            {{ 'action.edit'|trans }}
+                        </a>
+                    </td>
+                    <td>
+                        {% if not question.answers|length %}
+                            <a href="{{ url('question_delete', {id: question.id}) }}" title="{{ 'action.delete'|trans }}">
+                                {{ 'action.delete'|trans }}
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    {% else %}
+        <p>
+            {{ 'message.empty_list'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}
