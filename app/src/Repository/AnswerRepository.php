@@ -112,5 +112,4 @@ class AnswerRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?? $this->createQueryBuilder('answer');
     }
-
 }

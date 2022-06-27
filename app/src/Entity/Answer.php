@@ -165,6 +165,7 @@ class Answer
     /**
      * Setter for isBest, $best param = true or false.
      * @param bool $best
+     *
      * @return void
      */
     public function setBest(bool $best): void

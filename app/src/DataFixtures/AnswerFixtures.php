@@ -37,7 +37,7 @@ class AnswerFixtures extends AbstractBaseFixtures implements DependentFixtureInt
                 )
             );
             $answer->setContent($this->faker->sentence);
-            $answer->setIsBest(false);
+            $answer->setBest(false);
             $answer->setEmail($this->faker->email);
             $answer->setNickname($this->faker->word);
             /** @var Question $question */
