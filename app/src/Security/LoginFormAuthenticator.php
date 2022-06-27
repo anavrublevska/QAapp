@@ -45,11 +45,21 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
      */
     private UrlGeneratorInterface $urlGenerator;
 
+    /**
+     * Constructor.
+     *
+     * @param UrlGeneratorInterface $urlGenerator
+     */
     public function __construct(UrlGeneratorInterface $urlGenerator)
     {
         $this->urlGenerator = $urlGenerator;
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return bool
+     */
     public function supports(Request $request): bool
     {
         return self::LOGIN_ROUTE === $request->attributes->get('_route')
@@ -67,9 +77,11 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
      * You may throw any AuthenticationException in this method in case of error (e.g.
      * a UserNotFoundException when the user cannot be found).
      *
-     * @return Passport Passport
-     *
      * @throws AuthenticationException
+     *
+     * @param Request $request
+     *
+     * @return Passport
      */
     public function authenticate(Request $request): Passport
     {
@@ -123,8 +135,4 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
-
-
-
-
 }

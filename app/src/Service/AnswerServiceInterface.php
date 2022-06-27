@@ -35,5 +35,4 @@ interface AnswerServiceInterface
      * @param Answer $answer
      */
     public function delete(Answer $answer): void;
-
 }

@@ -38,7 +38,7 @@ class CategoryController extends AbstractController
     /**
      * Constructor.
      * @param CategoryServiceInterface $categoryService
-     * @param TranslatorInterface $translator
+     * @param TranslatorInterface      $translator
      */
     public function __construct(CategoryServiceInterface $categoryService, TranslatorInterface $translator)
     {
@@ -49,7 +49,9 @@ class CategoryController extends AbstractController
     /**
      * Index action.
      *
-     * @return Response HTTP response
+     * @param Request $request
+     *
+     * @return Response
      */
     #[Route(
         name: 'category_index',
@@ -171,7 +173,7 @@ class CategoryController extends AbstractController
     #[Route('/{id}/delete', name: 'category_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Category $category): Response
     {
-        if(!$this->categoryService->canBeDeleted($category)) {
+        if (!$this->categoryService->canBeDeleted($category)) {
             $this->addFlash(
                 'warning',
                 $this->translator->trans('message.category_contains_questions')
@@ -205,5 +207,4 @@ class CategoryController extends AbstractController
             ]
         );
     }
-
 }

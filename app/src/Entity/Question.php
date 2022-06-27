@@ -91,6 +91,9 @@ class Question
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Answer::class)]
     private $answers;
 
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
         $this->answers = new ArrayCollection();
@@ -117,6 +120,7 @@ class Question
     /**
      * Setter for createdAt.
      * @param DateTimeImmutable|null $createdAt
+     *
      * @return void
      */
     public function setCreatedAt(?DateTimeImmutable $createdAt): void
@@ -154,6 +158,7 @@ class Question
     /**
      * Setter for question title.
      * @param string|null $title
+     *
      * @return void
      */
     public function setTitle(?string $title): void
@@ -173,6 +178,7 @@ class Question
     /**
      * Setter for content.
      * @param string|null $content
+     *
      * @return void
      */
     public function setContent(?string $content): void
@@ -192,6 +198,7 @@ class Question
     /**
      * Set email.
      * @param string $email
+     *
      * @return void
      */
     public function setEmail(string $email): void
@@ -211,6 +218,7 @@ class Question
     /**
      * Set nickname.
      * @param string $nickname
+     *
      * @return void
      */
     public function setNickname(string $nickname): void
@@ -230,6 +238,7 @@ class Question
     /**
      * Setter for category relation.
      * @param Category|null $category
+     *
      * @return void
      */
     public function setCategory(?Category $category): void
@@ -245,6 +254,13 @@ class Question
         return $this->answers;
     }
 
+    /**
+     * Add answer.
+     *
+     * @param Answer $answer
+     *
+     * @return $this
+     */
     public function addAnswer(Answer $answer): self
     {
         if (!$this->answers->contains($answer)) {
@@ -255,6 +271,13 @@ class Question
         return $this;
     }
 
+    /**
+     * Remove answer.
+     *
+     * @param Answer $answer
+     *
+     * @return $this
+     */
     public function removeAnswer(Answer $answer): self
     {
         if ($this->answers->removeElement($answer)) {

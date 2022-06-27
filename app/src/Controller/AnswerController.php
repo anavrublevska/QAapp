@@ -38,7 +38,7 @@ class AnswerController extends AbstractController
     /**
      * Constructor.
      * @param AnswerServiceInterface $answerService
-     * @param TranslatorInterface $translator
+     * @param TranslatorInterface    $translator
      */
     public function __construct(AnswerServiceInterface $answerService, TranslatorInterface $translator)
     {
@@ -50,7 +50,7 @@ class AnswerController extends AbstractController
      * Edit action.
      *
      * @param Request $request HTTP request
-     * @param Answer $answer
+     * @param Answer  $answer
      *
      * @return Response HTTP response
      */
@@ -81,6 +81,15 @@ class AnswerController extends AbstractController
         ]);
     }
 
+    /**
+     * Checking answer as best.
+     *
+     * @param Request          $request
+     * @param Answer           $answer
+     * @param AnswerRepository $answerRepository
+     *
+     * @return Response
+     */
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/best', name: 'answer_best', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function best(Request $request, Answer $answer, AnswerRepository $answerRepository): Response
@@ -112,7 +121,7 @@ class AnswerController extends AbstractController
      * Delete action.
      *
      * @param Request $request HTTP request
-     * @param Answer $answer
+     * @param Answer  $answer
      *
      * @return Response HTTP response
      */
@@ -143,5 +152,4 @@ class AnswerController extends AbstractController
             'answer' => $answer,
         ]);
     }
-
 }

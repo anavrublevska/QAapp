@@ -40,8 +40,7 @@ class CategoryControllerTest extends WebTestCase
     /**
      * Create user.
      *
-     * @param array $roles User roles
-     *
+     * @param string $name
      * @return User User entity
      */
     protected function createUser(string $name): User
@@ -53,7 +52,7 @@ class CategoryControllerTest extends WebTestCase
         $user->setPassword(
             $passwordHasher->hashPassword(
                 $user,
-                'p@55w0rd'
+                'admin123'
             )
         );
         $userRepository = static::getContainer()->get(UserRepository::class);
@@ -62,17 +61,14 @@ class CategoryControllerTest extends WebTestCase
         return $user;
     }
 
+    /**
+     * Test route.
+     *
+     * @return void
+     */
     public function testCategoryRoute(): void
     {
-//         given
-
         // when
-//        $client->request('GET', '/category');
-//        $resultHttpStatusCode = $client->getResponse()->getStatusCode();
-
-//         then
-//        $this->assertEquals(200, $resultHttpStatusCode);
-
         $this->httpClient->request('GET', self::TEST_ROUTE);
         $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
 
@@ -80,10 +76,14 @@ class CategoryControllerTest extends WebTestCase
         $this->assertEquals(200, $resultStatusCode);
     }
 
-    // test category show
-
+    /**
+     * Test show category.
+     *
+     * @return void
+     */
     public function testShowCategory(): void
     {
+        // given
         $expectedCategory = new Category();
         $expectedCategory->setName('Category one');
         $expectedCategory->setCreatedAt(new \DateTimeImmutable('now'));
@@ -99,9 +99,13 @@ class CategoryControllerTest extends WebTestCase
         $this->assertEquals(200, $result->getStatusCode());
     }
 
+    /**
+     * Category message.
+     *
+     * @return void
+     */
     public function testCategoryMessage(): void
     {
-        // given
         // when
         $this->httpClient->request('GET', '/category');
         $result = $this->httpClient->getResponse()->getContent();
@@ -115,8 +119,6 @@ class CategoryControllerTest extends WebTestCase
      */
     public function testCategoryHeaderTag(): void
     {
-        // given
-
         // when
         $this->httpClient->request('GET', '/category');
 
@@ -125,6 +127,11 @@ class CategoryControllerTest extends WebTestCase
         self::assertSelectorTextContains('html h1', 'Kategorie');
     }
 
+    /**
+     * Test edit category.
+     * @return void
+     *
+     */
     public function testEditCategory(): void
     {
         // given
@@ -156,13 +163,16 @@ class CategoryControllerTest extends WebTestCase
             $savedCategory->getName());
     }
 
-
+    /**
+     * Test delete category.
+     *
+     * @return void
+     */
     public function testDeleteCategory(): void
     {
         // given
         $user = $this->createUser('category1');
         $this->httpClient->loginUser($user);
-
         $categoryRepository =
             static::getContainer()->get(CategoryRepository::class);
         $testCategory = new Category();
@@ -171,7 +181,6 @@ class CategoryControllerTest extends WebTestCase
         $testCategory->setUpdatedAt(new \DateTimeImmutable('now'));
         $categoryRepository->save($testCategory);
         $testCategoryId = $testCategory->getId();
-
         $this->httpClient->request('GET', self::TEST_ROUTE . '/' . $testCategoryId . '/delete');
 
         //when

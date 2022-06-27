@@ -28,8 +28,8 @@ class AnswerService implements AnswerServiceInterface
     /**
      * Constructor.
      *
-     * @param AnswerRepository $answerRepository
-     * @param PaginatorInterface $paginator Paginator
+     * @param AnswerRepository   $answerRepository
+     * @param PaginatorInterface $paginator        Paginator
      */
     public function __construct(AnswerRepository $answerRepository, PaginatorInterface $paginator)
     {

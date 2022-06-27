@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Class Answer.
+ */
 #[ORM\Entity(repositoryClass: AnswerRepository::class)]
 #[ORM\Table(name: 'ztp_answers')]
 class Answer
@@ -53,7 +56,7 @@ class Answer
      * @var bool
      */
     #[ORM\Column(type: 'boolean', nullable: false)]
-    private bool $is_best;
+    private bool $best;
 
     /**
      * @var string
@@ -102,6 +105,7 @@ class Answer
     /**
      * Setter for createdAt.
      * @param DateTimeImmutable|null $createdAt
+     *
      * @return void
      */
     public function setCreatedAt(?DateTimeImmutable $createdAt): void
@@ -121,6 +125,7 @@ class Answer
     /**
      * Setter for updatedAt.
      * @param DateTimeImmutable|null $updatedAt
+     *
      * @return void
      */
     public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
@@ -140,6 +145,7 @@ class Answer
     /**
      * Set content.
      * @param string $content
+     *
      * @return void
      */
     public function setContent(string $content): void
@@ -151,19 +157,19 @@ class Answer
      * Check if isBest == true.
      * @return bool|null
      */
-    public function isIsBest(): ?bool
+    public function isBest(): ?bool
     {
-        return $this->is_best;
+        return $this->best;
     }
 
     /**
-     * Setter for isBest, $is_best param = true or false.
-     * @param bool $is_best
+     * Setter for isBest, $best param = true or false.
+     * @param bool $best
      * @return void
      */
-    public function setIsBest(bool $is_best): void
+    public function setBest(bool $best): void
     {
-        $this->is_best = $is_best;
+        $this->best = $best;
     }
 
     /**
@@ -178,6 +184,7 @@ class Answer
     /**
      * Setter for email.
      * @param string $email
+     *
      * @return void
      */
     public function setEmail(string $email): void
@@ -197,6 +204,7 @@ class Answer
     /**
      * Set nickname.
      * @param string $nickname
+     *
      * @return void
      */
     public function setNickname(string $nickname): void
@@ -216,6 +224,7 @@ class Answer
     /**
      * Set question (relation).
      * @param Question|null $question
+     *
      * @return void
      */
     public function setQuestion(?Question $question): void

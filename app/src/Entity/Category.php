@@ -91,6 +91,7 @@ class Category
     /**
      * Setter for createdAt.
      * @param DateTimeImmutable|null $createdAt
+     *
      * @return void
      */
     public function setCreatedAt(?DateTimeImmutable $createdAt): void
@@ -142,6 +143,13 @@ class Category
         return $this->questions;
     }
 
+    /**
+     * Add question.
+     *
+     * @param Question $question
+     *
+     * @return $this
+     */
     public function addQuestion(Question $question): self
     {
         if (!$this->questions->contains($question)) {
@@ -152,6 +160,13 @@ class Category
         return $this;
     }
 
+    /**
+     * Remove question.
+     *
+     * @param Question $question
+     *
+     * @return $this
+     */
     public function removeQuestion(Question $question): self
     {
         if ($this->questions->removeElement($question)) {
@@ -163,5 +178,4 @@ class Category
 
         return $this;
     }
-
 }

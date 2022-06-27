@@ -53,11 +53,9 @@
                         </a>
                     </td>
                     <td>
-                        {% if not question.answers|length %}
-                            <a href="{{ url('question_delete', {id: question.id}) }}" title="{{ 'action.delete'|trans }}">
-                                {{ 'action.delete'|trans }}
-                            </a>
-                        {% endif %}
+                        <a href="{{ url('question_delete', {id: question.id}) }}" title="{{ 'action.delete'|trans }}">
+                            {{ 'action.delete'|trans }}
+                        </a>
                     </td>
                 </tr>
             {% endfor %}

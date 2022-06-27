@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Question Repository.
+ */
 namespace App\Repository;
 
 use App\Entity\Category;
@@ -31,6 +33,9 @@ class QuestionRepository extends ServiceEntityRepository
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
+    /**
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Question::class);
@@ -50,18 +55,6 @@ class QuestionRepository extends ServiceEntityRepository
             )
             ->join('question.category', 'category')
             ->orderBy('question.updatedAt', 'DESC');
-    }
-
-    /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('question');
     }
 
     /**
@@ -107,8 +100,24 @@ class QuestionRepository extends ServiceEntityRepository
         $this->_em->flush();
     }
 
-    public function getAnswersCount(){
-        return count($this->voters);
+//    /**
+//     * @return int|void
+//     */
+//    public function getAnswersCount()
+//    {
+//        return count($this->voters);
+//    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('question');
     }
 
 

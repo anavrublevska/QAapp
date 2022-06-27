@@ -35,5 +35,4 @@ interface QuestionServiceInterface
      * @param Question $question
      */
     public function delete(Question $question): void;
-
 }

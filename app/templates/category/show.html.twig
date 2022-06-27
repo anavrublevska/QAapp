@@ -40,11 +40,9 @@
                                 <a class="btn btn-outline-info" href="{{ url('question_edit', {id: question.id}) }}" title="{{ 'action.edit'|trans }}">
                                     <i class="fa fa-wrench" aria-hidden="true"></i> {{ 'action.edit'|trans }}
                                 </a>
-                                {% if not question.answers|length %}
-                                    <a class="btn btn-outline-danger" href="{{ url('question_delete', {id: question.id}) }}" title="{{ 'action.delete'|trans }}">
-                                        <i class="fa fa-trash" aria-hidden="true"></i> {{ 'action.delete'|trans }}
-                                    </a>
-                                {% endif %}
+                                <a class="btn btn-outline-danger" href="{{ url('question_delete', {id: question.id}) }}" title="{{ 'action.delete'|trans }}">
+                                    <i class="fa fa-trash" aria-hidden="true"></i> {{ 'action.delete'|trans }}
+                                </a>
                             {% endif %}
 
                             <footer class="blockquote-footer">{{ 'created'|trans }} <cite title="Source Title">{{ question.nickname }}</cite> {{ question.createdAt|date('Y/m/d') }}</footer>

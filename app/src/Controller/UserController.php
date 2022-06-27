@@ -44,8 +44,8 @@ class UserController extends AbstractController
     /**
      * Constructor.
      *
-     * @param UserService $userService
-     * @param TranslatorInterface $translator
+     * @param UserService                 $userService
+     * @param TranslatorInterface         $translator
      * @param UserPasswordHasherInterface $passwordHasher
      */
     public function __construct(UserService $userService, TranslatorInterface $translator, UserPasswordHasherInterface $passwordHasher)
@@ -60,6 +60,7 @@ class UserController extends AbstractController
      * User's account.
      *
      * @param User $user
+     *
      * @return Response
      */
     #[IsGranted('ROLE_ADMIN')]
@@ -82,7 +83,8 @@ class UserController extends AbstractController
      * Edit email in my account.
      *
      * @param Request $request
-     * @param User $user
+     * @param User    $user
+     *
      * @return Response
      */
     #[IsGranted('ROLE_ADMIN')]
@@ -119,7 +121,8 @@ class UserController extends AbstractController
      * Change password.
      *
      * @param Request $request
-     * @param User $user
+     * @param User    $user
+     *
      * @return Response
      */
     #[IsGranted('ROLE_ADMIN')]
@@ -135,7 +138,8 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword(
                 $this->passwordHasher->hashPassword(
-                    $user, $form->get('password')->getData()
+                    $user,
+                    $form->get('password')->getData()
                 )
             );
             $this->userService->save($user);

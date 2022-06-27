@@ -23,20 +23,23 @@ class AnswerType extends AbstractType
      * This method is called for each type in the hierarchy starting from the
      * top most type. Type extensions can further modify the form.
      *
+     * @see FormTypeExtensionInterface::buildForm()
+     *
+     * @param FormBuilderInterface $builder
      * @param array<string, mixed> $options
      *
-     * @see FormTypeExtensionInterface::buildForm()
+     * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add(
-                'content',
-                TextType::class,
-                [
+            'content',
+            TextType::class,
+            [
                     'label' => 'label.description',
                     'required' => true,
                 ]
-            )
+        )
             ->add(
                 'email',
                 EmailType::class,
@@ -66,11 +69,14 @@ class AnswerType extends AbstractType
 //                'required' => true,
 //            ]
 //        );
-
     }
 
     /**
-     * Configures the options for this type.
+     * Configures options.
+     *
+     * @param OptionsResolver $resolver
+     *
+     * @return void
      */
     public function configureOptions(OptionsResolver $resolver): void
     {

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * AnswerBest type.
  */
@@ -30,11 +29,11 @@ class BestAnswerType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('is_best', ChoiceType::class, [
-            'label' => 'label_isBest',
+        $builder->add('best', ChoiceType::class, [
+            'label' => 'label_best',
             'choices' => [
-                '✓<i class="fa fa-trash" aria-hidden="true"></i>' => true,
-                '<i class="fa fa-trash" aria-hidden="true"></i>' => false,
+                '✓' => true,
+                'x' => false,
             ],
         ]);
     }

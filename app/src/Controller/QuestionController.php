@@ -2,7 +2,6 @@
 /**
  * Question controller.
  */
-
 namespace App\Controller;
 
 use App\Entity\Answer;
@@ -32,6 +31,9 @@ class QuestionController extends AbstractController
      */
     private QuestionService $questionService;
 
+    /**
+     * @var AnswerService
+     */
     private AnswerService $answerService;
 
     /**
@@ -42,8 +44,8 @@ class QuestionController extends AbstractController
     /**
      * Constructor.
      * @param QuestionServiceInterface $questionService
-     * @param AnswerService $answerService
-     * @param TranslatorInterface $translator
+     * @param AnswerService            $answerService
+     * @param TranslatorInterface      $translator
      */
     public function __construct(QuestionServiceInterface $questionService, AnswerService $answerService, TranslatorInterface $translator)
     {
@@ -56,7 +58,6 @@ class QuestionController extends AbstractController
      * Index questions.
      *
      * @param Request $request HTTP Request
-     *
      * @return Response HTTP response
      */
     #[IsGranted('ROLE_ADMIN')]
@@ -76,30 +77,21 @@ class QuestionController extends AbstractController
     /**
      * Show question.
      *
-     * @param Request $request
-     * @param Question $question
+     * @param Request          $request
+     * @param Question         $question
      * @param AnswerRepository $answerRepository
      * @return Response
      */
     #[Route(
-        '/{id}',
-        name: 'question_show',
-        requirements: ['id' => '[1-9]\d*'],
-        methods: ['GET', 'POST']
+        '/{id}', name: 'question_show', requirements: ['id' => '[1-9]\d*'], methods: ['GET', 'POST']
     )]
     public function show(Request $request, Question $question, AnswerRepository $answerRepository): Response
     {
         $answer = new Answer();
-        $answer->setIsBest(false);
-
+        $answer->setBest(false);
         $form = $this->createForm(AnswerType::class, $answer);
         $form->handleRequest($request);
         $id = $question->getId();
-
-//        $user = $this->getUser();
-//        if ($user) {
-//            $answer->setEmail($user->getUserIdentifier());
-//        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $answer->setQuestion($question);
@@ -135,7 +127,6 @@ class QuestionController extends AbstractController
         if ($user) {
             $question->setEmail($user->getUserIdentifier());
         }
-
         $form = $this->createForm(QuestionType::class, $question, ['action' => $this->generateUrl('question_create')]);
         $form->handleRequest($request);
 

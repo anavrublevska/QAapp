@@ -38,7 +38,7 @@ class CategoryService implements CategoryServiceInterface
      *
      * @param CategoryRepository $categoryRepository
      * @param QuestionRepository $questionRepository
-     * @param PaginatorInterface $paginator Paginator
+     * @param PaginatorInterface $paginator          Paginator
      */
     public function __construct(CategoryRepository $categoryRepository, QuestionRepository $questionRepository, PaginatorInterface $paginator)
     {
@@ -100,6 +100,7 @@ class CategoryService implements CategoryServiceInterface
      * Delete category.
      *
      * @param Category $category
+     *
      * @return void
      */
     public function delete(Category $category): void
@@ -107,4 +108,3 @@ class CategoryService implements CategoryServiceInterface
         $this->categoryRepository->delete($category);
     }
 }
-

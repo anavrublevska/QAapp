@@ -28,7 +28,7 @@
                 {% for answer in question.answers %}
                     <div class="card border-warning mb-3 ml-2 mr-2">
                         <div class="card-header"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Odpowiedz
-                            {% if answer.isIsBest() == true %}
+                            {% if answer.isBest() == true %}
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             {% endif %}
                         </div>
