@@ -21,7 +21,7 @@ class UserControllerTest extends WebTestCase
     protected KernelBrowser $httpClient;
 
     /**
-     * @return void
+     * @return void void
      */
     public function setUp(): void
     {
@@ -29,16 +29,57 @@ class UserControllerTest extends WebTestCase
     }
 
     /**
-     * Create user.
+     * Test show user.
+     */
+    public function testShowUser(): void
+    {
+        // given
+        $user = $this->createUser('user_a');
+        $this->httpClient->loginUser($user);
+
+        // when
+        $this->httpClient->request('GET', '/account/'.$user->getId());
+        $result = $this->httpClient->getResponse();
+
+        // then
+        $this->assertEquals(200, $result->getStatusCode());
+    }
+
+    /**
+     * Test edit email.
+     */
+    public function testEditEmailUser(): void
+    {
+        // given
+        $user = $this->createUser('user_b');
+        $this->httpClient->loginUser($user);
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $newEmail = 'newemail_b@example.com';
+
+        // when
+        $this->httpClient->request('GET', '/account/'.
+        $user->getId().'/edit/email');
+
+        $this->httpClient->submitForm(
+            'Zapisz',
+            ['user' => ['email' => $newEmail]]
+        );
+
+        // then
+        $savedUser = $userRepository->findOneById($user->getId());
+        $this->assertEquals($newEmail, $savedUser->getEmail());
+    }
+
+    /**
+     * @param string $name name
      *
-     * @param string $name
      * @return User User entity
      */
     protected function createUser(string $name): User
     {
         $passwordHasher = static::getContainer()->get('security.password_hasher');
         $user = new User();
-        $user->setEmail($name . '@example.com');
+        $user->setEmail($name.'@example.com');
         $user->setRoles(['ROLE_ADMIN']);
         $user->setPassword(
             $passwordHasher->hashPassword(
@@ -51,52 +92,4 @@ class UserControllerTest extends WebTestCase
 
         return $user;
     }
-
-    /**
-     * Test show user.
-     *
-     * @return void
-     */
-    public function testShowUser(): void
-    {
-        // given
-        $user = $this->createUser('user_a');
-        $this->httpClient->loginUser($user);
-
-        // when
-        $this->httpClient->request('GET', '/account/' . $user->getId());
-        $result = $this->httpClient->getResponse();
-
-        // then
-        $this->assertEquals(200, $result->getStatusCode());
-
-    }
-
-    /**
-     * Test edit email.
-     *
-     * @return void
-     */
-    public function testEditEmailUser(): void
-    {
-        // given
-        $user = $this->createUser('user_b');
-        $this->httpClient->loginUser($user);
-        $userRepository = static::getContainer()->get(UserRepository::class);
-        $newEmail = 'newemail_b@example.com';
-
-        // when
-        $this->httpClient->request('GET', '/account/' .
-            $user->getId() . '/edit/email');
-
-        $this->httpClient->submitForm(
-            'Zapisz',
-            ['user' => ['email' => $newEmail]]
-        );
-
-        // then
-        $savedUser = $userRepository->findOneById($user->getId());
-        $this->assertEquals($newEmail, $savedUser->getEmail());
-    }
-
 }

@@ -22,8 +22,8 @@ class CategoryType extends AbstractType
      * This method is called for each type in the hierarchy starting from the
      * top most type. Type extensions can further modify the form.
      *
-     * @param FormBuilderInterface $builder
-     * @param array<string, mixed> $options
+     * @param FormBuilderInterface $builder builder
+     * @param array<string, mixed> $options options
      *
      * @see FormTypeExtensionInterface::buildForm()
      */
@@ -41,11 +41,7 @@ class CategoryType extends AbstractType
     }
 
     /**
-     * Configure options.
-     *
-     * @param OptionsResolver $resolver
-     *
-     * @return void
+     * @param OptionsResolver $resolver resolver
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
@@ -53,12 +49,7 @@ class CategoryType extends AbstractType
     }
 
     /**
-     * Returns the prefix of the template block name for this type.
-     *
-     * The block prefix defaults to the underscored short class name with
-     * the "Type" suffix removed (e.g. "UserProfileType" => "user_profile").
-     *
-     * @return string
+     * @return string string
      */
     public function getBlockPrefix(): string
     {

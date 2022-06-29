@@ -2,6 +2,7 @@
 /**
  * Answer Repository.
  */
+
 namespace App\Repository;
 
 use App\Entity\Answer;
@@ -34,8 +35,7 @@ class AnswerRepository extends ServiceEntityRepository
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
-     * Constructor.
-     * @param ManagerRegistry $registry
+     * @param ManagerRegistry $registry registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -59,14 +59,14 @@ class AnswerRepository extends ServiceEntityRepository
     }
 
     /**
-     * Count answers by question.
+     * Count by question.
      *
-     * @param Question $question
-     *
-     * @return int Number of questions in category
+     * @param Question $question question
      *
      * @throws NoResultException
      * @throws NonUniqueResultException
+     *
+     * @return int int
      */
     public function countByQuestion(Question $question): int
     {
@@ -80,9 +80,7 @@ class AnswerRepository extends ServiceEntityRepository
     }
 
     /**
-     * Save entity.
-     *
-     * @param Answer $answer
+     * @param Answer $answer answer
      */
     public function save(Answer $answer): void
     {
@@ -91,9 +89,7 @@ class AnswerRepository extends ServiceEntityRepository
     }
 
     /**
-     * Delete entity.
-     *
-     * @param Answer $answer
+     * @param Answer $answer answer
      */
     public function delete(Answer $answer): void
     {

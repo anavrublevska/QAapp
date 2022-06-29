@@ -2,6 +2,7 @@
 /**
  * Category repository.
  */
+
 namespace App\Repository;
 
 use App\Entity\Category;
@@ -32,7 +33,8 @@ class CategoryRepository extends ServiceEntityRepository
 
     /**
      * Constructor.
-     * @param ManagerRegistry $registry
+     *
+     * @param ManagerRegistry $registry registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -74,11 +76,9 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
-     * Query all questions.
+     * @param int $categoryId categoryId\
      *
-     * @param int $categoryId
-     *
-     * @return QueryBuilder
+     * @return QueryBuilder queryBuilder
      */
     public function queryAllQuestions(int $categoryId): QueryBuilder
     {
@@ -98,8 +98,6 @@ class CategoryRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?? $this->createQueryBuilder('category');
     }
-
-
 
 //    public function add(Category $entity, bool $flush = false): void
 //    {

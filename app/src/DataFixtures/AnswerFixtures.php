@@ -55,7 +55,6 @@ class AnswerFixtures extends AbstractBaseFixtures implements DependentFixtureInt
      * on which the implementing class depends on.
      *
      * @return string[] of dependencies
-     *
      */
     public function getDependencies(): array
     {

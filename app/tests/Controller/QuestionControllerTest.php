@@ -22,7 +22,6 @@ class QuestionControllerTest extends WebTestCase
 {
     /**
      * Test '/question' route.
-     *
      */
     public const TEST_ROUTE = '/question';
 
@@ -32,7 +31,7 @@ class QuestionControllerTest extends WebTestCase
     protected KernelBrowser $httpClient;
 
     /**
-     * @return void
+     * @return void void
      */
     public function setUp(): void
     {
@@ -40,9 +39,131 @@ class QuestionControllerTest extends WebTestCase
     }
 
     /**
+     * Test route.
+     *
+     * @return void void
+     */
+    public function testQuestionRoute(): void
+    {
+        $this->httpClient->request('GET', self::TEST_ROUTE);
+        $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
+
+        $this->assertEquals(302, $resultStatusCode);
+    }
+
+    /**
+     * Test show.
+     *
+     * @return void void
+     */
+    public function testShowQuestion(): void
+    {
+        // given
+        $category = $this->createCategory('Category_One');
+        $user = $this->createUser('user1');
+        $this->httpClient->loginUser($user);
+        $questionRepository =
+            static::getContainer()->get(QuestionRepository::class);
+        $testQuestion = new Question();
+        $testQuestion->setTitle('TestQuestion');
+        $testQuestion->setContent('Lorem ipsum dolor sit amet');
+        $testQuestion->setNickname('userone');
+        $testQuestion->setEmail('userone@example.com');
+        $testQuestion->setCategory($category);
+        $testQuestion->setCreatedAt(new DateTimeImmutable('now'));
+        $testQuestion->setUpdatedAt(new DateTimeImmutable('now'));
+        $questionRepository->save($testQuestion);
+
+        // when
+        $this->httpClient->request('GET', '/question/'.$testQuestion->getId());
+        $result = $this->httpClient->getResponse();
+
+        // then
+        $this->assertEquals(200, $result->getStatusCode());
+    }
+
+    /**
+     * Test edit question.
+     *
+     * @return void void
+     */
+    public function testEditQuestion(): void
+    {
+        // given
+        $category = $this->createCategory('Category_Two');
+        $user = $this->createUser('user2');
+        $this->httpClient->loginUser($user);
+
+        $questionRepository =
+            static::getContainer()->get(QuestionRepository::class);
+        $testQuestion = new Question();
+        $testQuestion->setTitle('TestQuestion');
+        $testQuestion->setContent('Lorem ipsum dolor sit amet');
+        $testQuestion->setNickname('usertwo');
+        $testQuestion->setEmail('usertwo@example.com');
+        $testQuestion->setCategory($category);
+        $testQuestion->setCreatedAt(new DateTimeImmutable('now'));
+        $testQuestion->setUpdatedAt(new DateTimeImmutable('now'));
+        $questionRepository->save($testQuestion);
+        $testQuestionId = $testQuestion->getId();
+        $expectedNewQuestionTitle = 'TestQuestionEdit';
+
+        $this->httpClient->request('GET', self::TEST_ROUTE.'/'.
+        $testQuestionId.'/edit');
+
+        // when
+        $this->httpClient->submitForm(
+            'Zapisz',
+            ['question' => ['title' => $expectedNewQuestionTitle]]
+        );
+
+        // then
+        $savedQuestion = $questionRepository->findOneById($testQuestionId);
+        $this->assertEquals(
+            $expectedNewQuestionTitle,
+            $savedQuestion->getTitle()
+        );
+    }
+
+    /**
+     * Test delete question.
+     *
+     * @return void void
+     */
+    public function testDeleteQuestion(): void
+    {
+        // given
+        $category = $this->createCategory('Category_Three');
+        $user = $this->createUser('user3');
+        $this->httpClient->loginUser($user);
+        $questionRepository =
+            static::getContainer()->get(QuestionRepository::class);
+        $testQuestion = new Question();
+        $testQuestion->setTitle('TestQuestion');
+        $testQuestion->setContent('Lorem ipsum dolor sit amet');
+        $testQuestion->setNickname('userthree');
+        $testQuestion->setEmail('userthree@example.com');
+        $testQuestion->setCategory($category);
+        $testQuestion->setCreatedAt(new DateTimeImmutable('now'));
+        $testQuestion->setUpdatedAt(new DateTimeImmutable('now'));
+        $questionRepository->save($testQuestion);
+        $testQuestionId = $testQuestion->getId();
+        $this->httpClient->request('GET', self::TEST_ROUTE.'/'.$testQuestionId.'/delete');
+
+        // when
+        $this->httpClient->submitForm(
+            'Usuń'
+        );
+
+        // then
+        $this->assertNull($questionRepository->findOneByTitle('TestQuestionCreated'));
+    }
+
+    /**
      * Create user.
      *
-     * @param string $name
+     * @param string $name name
+     *
      * @return User User entity
      */
     protected function createUser(string $name): User
@@ -66,8 +187,9 @@ class QuestionControllerTest extends WebTestCase
     /**
      * Create category.
      *
-     * @param string $name
-     * @return Category
+     * @param string $name name
+     *
+     * @return Category category
      */
     protected function createCategory(string $name): Category
     {
@@ -79,125 +201,5 @@ class QuestionControllerTest extends WebTestCase
         $categoryRepository->save($category);
 
         return $category;
-    }
-
-    /**
-     * Test route.
-     *
-     * @return void
-     */
-    public function testQuestionRoute(): void
-    {
-        $this->httpClient->request('GET', self::TEST_ROUTE);
-        $resultStatusCode = $this->httpClient->getResponse()->getStatusCode();
-
-        $this->assertEquals(302, $resultStatusCode);
-    }
-
-
-
-    /**
-     * Test show.
-     * @return void
-     */
-    public function testShowQuestion(): void
-    {
-        // given
-        $category = $this->createCategory('Category_One');
-        $user = $this->createUser('user1');
-        $this->httpClient->loginUser($user);
-        $questionRepository =
-            static::getContainer()->get(QuestionRepository::class);
-        $testQuestion = new Question();
-        $testQuestion->setTitle('TestQuestion');
-        $testQuestion->setContent('Lorem ipsum dolor sit amet');
-        $testQuestion->setNickname('userone');
-        $testQuestion->setEmail('userone@example.com');
-        $testQuestion->setCategory($category);
-        $testQuestion->setCreatedAt(new DateTimeImmutable('now'));
-        $testQuestion->setUpdatedAt(new DateTimeImmutable('now'));
-        $questionRepository->save($testQuestion);
-
-        // when
-        $this->httpClient->request('GET', '/question/' . $testQuestion->getId());
-        $result = $this->httpClient->getResponse();
-
-        // then
-        $this->assertEquals(200, $result->getStatusCode());
-    }
-
-    /**
-     * Test edit question.
-     *
-     * @return void
-     */
-    public function testEditQuestion(): void
-    {
-        // given
-        $category = $this->createCategory('Category_Two');
-        $user = $this->createUser('user2');
-        $this->httpClient->loginUser($user);
-
-        $questionRepository =
-            static::getContainer()->get(QuestionRepository::class);
-        $testQuestion = new Question();
-        $testQuestion->setTitle('TestQuestion');
-        $testQuestion->setContent('Lorem ipsum dolor sit amet');
-        $testQuestion->setNickname('usertwo');
-        $testQuestion->setEmail('usertwo@example.com');
-        $testQuestion->setCategory($category);
-        $testQuestion->setCreatedAt(new DateTimeImmutable('now'));
-        $testQuestion->setUpdatedAt(new DateTimeImmutable('now'));
-        $questionRepository->save($testQuestion);
-        $testQuestionId = $testQuestion->getId();
-        $expectedNewQuestionTitle = 'TestQuestionEdit';
-
-        $this->httpClient->request('GET', self::TEST_ROUTE . '/' .
-            $testQuestionId . '/edit');
-
-        // when
-        $this->httpClient->submitForm(
-            'Zapisz',
-            ['question' => ['title' => $expectedNewQuestionTitle]]
-        );
-
-        // then
-        $savedQuestion = $questionRepository->findOneById($testQuestionId);
-        $this->assertEquals($expectedNewQuestionTitle,
-            $savedQuestion->getTitle());
-    }
-
-    /**
-     * Test delete question.
-     *
-     * @return void
-     */
-    public function testDeleteQuestion(): void
-    {
-        // given
-        $category = $this->createCategory('Category_Three');
-        $user = $this->createUser('user3');
-        $this->httpClient->loginUser($user);
-        $questionRepository =
-            static::getContainer()->get(QuestionRepository::class);
-        $testQuestion = new Question();
-        $testQuestion->setTitle('TestQuestion');
-        $testQuestion->setContent('Lorem ipsum dolor sit amet');
-        $testQuestion->setNickname('userthree');
-        $testQuestion->setEmail('userthree@example.com');
-        $testQuestion->setCategory($category);
-        $testQuestion->setCreatedAt(new DateTimeImmutable('now'));
-        $testQuestion->setUpdatedAt(new DateTimeImmutable('now'));
-        $questionRepository->save($testQuestion);
-        $testQuestionId = $testQuestion->getId();
-        $this->httpClient->request('GET', self::TEST_ROUTE . '/' . $testQuestionId . '/delete');
-
-        //when
-        $this->httpClient->submitForm(
-            'Usuń'
-        );
-
-        // then
-        $this->assertNull($questionRepository->findOneByTitle('TestQuestionCreated'));
     }
 }

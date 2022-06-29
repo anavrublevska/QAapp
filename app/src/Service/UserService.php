@@ -28,11 +28,8 @@ class UserService
         $this->userRepository = $userRepository;
     }
 
-
     /**
-     * Save entity.
-     *
-     * @param User $user
+     * @param User $user user
      */
     public function save(User $user): void
     {

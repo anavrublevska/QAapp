@@ -2,6 +2,7 @@
 /**
  * User entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\UserRepository;
@@ -20,6 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * Primary key.
+     *
      * @var int|null
      */
     #[ORM\Id]
@@ -29,6 +31,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Email.
+     *
      * @var string|null
      */
     #[ORM\Column(type: 'string', length: 180, unique: true)]
@@ -84,9 +87,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * A visual identifier that represents this user.
-     *
-     * @return string
+     * @return string string
      */
     public function getUserIdentifier(): string
     {
@@ -94,7 +95,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return string
+     * @return string string
      */
     public function getUsername(): string
     {
@@ -150,12 +151,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
-     *
-     * @see UserInterface
-     *
-     * @return string|null
+     * @return string|null string
      */
     public function getSalt(): ?string
     {

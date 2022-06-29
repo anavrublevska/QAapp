@@ -20,7 +20,6 @@ class CategoryControllerTest extends WebTestCase
 {
     /**
      * Test '/category' route.
-     *
      */
     public const TEST_ROUTE = '/category';
 
@@ -30,7 +29,7 @@ class CategoryControllerTest extends WebTestCase
     protected KernelBrowser $httpClient;
 
     /**
-     * @return void
+     * @return void void
      */
     public function setUp(): void
     {
@@ -38,33 +37,9 @@ class CategoryControllerTest extends WebTestCase
     }
 
     /**
-     * Create user.
-     *
-     * @param string $name
-     * @return User User entity
-     */
-    protected function createUser(string $name): User
-    {
-        $passwordHasher = static::getContainer()->get('security.password_hasher');
-        $user = new User();
-        $user->setEmail($name.'@example.com');
-        $user->setRoles(['ROLE_ADMIN']);
-        $user->setPassword(
-            $passwordHasher->hashPassword(
-                $user,
-                'admin123'
-            )
-        );
-        $userRepository = static::getContainer()->get(UserRepository::class);
-        $userRepository->save($user);
-
-        return $user;
-    }
-
-    /**
      * Test route.
      *
-     * @return void
+     * @return void void
      */
     public function testCategoryRoute(): void
     {
@@ -79,7 +54,7 @@ class CategoryControllerTest extends WebTestCase
     /**
      * Test show category.
      *
-     * @return void
+     * @return void void
      */
     public function testShowCategory(): void
     {
@@ -92,7 +67,7 @@ class CategoryControllerTest extends WebTestCase
         $categoryRepository->save($expectedCategory);
 
         // when
-        $this->httpClient->request('GET', '/category/' . $expectedCategory->getId());
+        $this->httpClient->request('GET', '/category/'.$expectedCategory->getId());
         $result = $this->httpClient->getResponse();
 
         // then
@@ -102,7 +77,7 @@ class CategoryControllerTest extends WebTestCase
     /**
      * Category message.
      *
-     * @return void
+     * @return void void
      */
     public function testCategoryMessage(): void
     {
@@ -129,8 +104,8 @@ class CategoryControllerTest extends WebTestCase
 
     /**
      * Test edit category.
-     * @return void
      *
+     * @return void void
      */
     public function testEditCategory(): void
     {
@@ -148,8 +123,8 @@ class CategoryControllerTest extends WebTestCase
         $testCategoryId = $testCategory->getId();
         $expectedNewCategoryName = 'TestCategoryEdit';
 
-        $this->httpClient->request('GET', self::TEST_ROUTE . '/' .
-            $testCategoryId . '/edit');
+        $this->httpClient->request('GET', self::TEST_ROUTE.'/'.
+        $testCategoryId.'/edit');
 
         // when
         $this->httpClient->submitForm(
@@ -159,14 +134,16 @@ class CategoryControllerTest extends WebTestCase
 
         // then
         $savedCategory = $categoryRepository->findOneById($testCategoryId);
-        $this->assertEquals($expectedNewCategoryName,
-            $savedCategory->getName());
+        $this->assertEquals(
+            $expectedNewCategoryName,
+            $savedCategory->getName()
+        );
     }
 
     /**
      * Test delete category.
      *
-     * @return void
+     * @return void void
      */
     public function testDeleteCategory(): void
     {
@@ -181,14 +158,39 @@ class CategoryControllerTest extends WebTestCase
         $testCategory->setUpdatedAt(new \DateTimeImmutable('now'));
         $categoryRepository->save($testCategory);
         $testCategoryId = $testCategory->getId();
-        $this->httpClient->request('GET', self::TEST_ROUTE . '/' . $testCategoryId . '/delete');
+        $this->httpClient->request('GET', self::TEST_ROUTE.'/'.$testCategoryId.'/delete');
 
-        //when
+        // when
         $this->httpClient->submitForm(
             'Usuń'
         );
 
         // then
         $this->assertNull($categoryRepository->findOneByName('TestCategoryCreated'));
+    }
+
+    /**
+     * Create user.
+     *
+     * @param string $name name
+     *
+     * @return User User entity
+     */
+    protected function createUser(string $name): User
+    {
+        $passwordHasher = static::getContainer()->get('security.password_hasher');
+        $user = new User();
+        $user->setEmail($name.'@example.com');
+        $user->setRoles(['ROLE_ADMIN']);
+        $user->setPassword(
+            $passwordHasher->hashPassword(
+                $user,
+                'admin123'
+            )
+        );
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $userRepository->save($user);
+
+        return $user;
     }
 }

@@ -20,14 +20,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 class AnswerServiceTest extends WebTestCase
 {
-
     /**
      * Answer service.
      */
     private ?AnswerService $answerService;
 
     /**
-     * @return void
+     * @return void void
      */
     public function setUp(): void
     {
@@ -38,7 +37,7 @@ class AnswerServiceTest extends WebTestCase
     /**
      * TestPaginatedList.
      *
-     * @return void
+     * @return void void
      */
     public function testGetPaginatedList(): void
     {
@@ -72,9 +71,9 @@ class AnswerServiceTest extends WebTestCase
         while ($i < $dataSetSize) {
             $answer = new Answer();
             $answer->setContent('Lorem ipsum dolor sit amet');
-            $answer->setNickname('user' . $i);
+            $answer->setNickname('user'.$i);
             $answer->setBest(0);
-            $answer->setEmail('user' . $i . '@example.com');
+            $answer->setEmail('user'.$i.'@example.com');
             $answer->setQuestion($testQuestion);
             $answer->setCreatedAt(new DateTimeImmutable('now'));
             $answer->setUpdatedAt(new DateTimeImmutable('now'));
@@ -87,6 +86,5 @@ class AnswerServiceTest extends WebTestCase
 
         // then
         $this->assertEquals($expectedResultSize, count($result));
-
     }
 }

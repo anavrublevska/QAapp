@@ -2,6 +2,7 @@
 /**
  * Category entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
@@ -33,6 +34,7 @@ class Category
 
     /**
      * Created at.
+     *
      * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
@@ -42,6 +44,7 @@ class Category
 
     /**
      * Updated at.
+     *
      * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
@@ -51,6 +54,7 @@ class Category
 
     /**
      * Category name.
+     *
      * @var string|null
      */
     #[ORM\Column(type: 'string', length: 64)]
@@ -71,8 +75,7 @@ class Category
     }
 
     /**
-     * Getter for id.
-     * @return int|null
+     * @return int|null int
      */
     public function getId(): ?int
     {
@@ -80,8 +83,7 @@ class Category
     }
 
     /**
-     * Getter for createdAt.
-     * @return DateTimeImmutable|null
+     * @return DateTimeImmutable|null dateTime
      */
     public function getCreatedAt(): ?DateTimeImmutable
     {
@@ -90,9 +92,8 @@ class Category
 
     /**
      * Setter for createdAt.
-     * @param DateTimeImmutable|null $createdAt
      *
-     * @return void
+     * @param DateTimeImmutable|null $createdAt createdAt
      */
     public function setCreatedAt(?DateTimeImmutable $createdAt): void
     {
@@ -100,8 +101,7 @@ class Category
     }
 
     /**
-     * Getter for updatedAt.
-     * @return DateTimeImmutable|null
+     * @return DateTimeImmutable|null dateTime
      */
     public function getUpdatedAt(): ?DateTimeImmutable
     {
@@ -109,8 +109,9 @@ class Category
     }
 
     /**
-     * Setter for updatedAt.
-     * @param DateTimeImmutable|null $updatedAt
+     *  Setter for updatedAt.
+     *
+     * @param DateTimeImmutable|null $updatedAt updatedAt
      */
     public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
     {
@@ -118,8 +119,7 @@ class Category
     }
 
     /**
-     * Getter for name.
-     * @return string|null
+     * @return string|null string
      */
     public function getName(): ?string
     {
@@ -127,8 +127,9 @@ class Category
     }
 
     /**
-     * Setter for name;
-     * @param string|null $name
+     * Setter for name.
+     *
+     * @param string|null $name name
      */
     public function setName(?string $name): void
     {
@@ -146,7 +147,7 @@ class Category
     /**
      * Add question.
      *
-     * @param Question $question
+     * @param Question $question Question
      *
      * @return $this
      */
@@ -163,7 +164,7 @@ class Category
     /**
      * Remove question.
      *
-     * @param Question $question
+     * @param Question $question Question
      *
      * @return $this
      */

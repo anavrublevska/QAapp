@@ -2,6 +2,7 @@
 /**
  * Answer entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\AnswerRepository;
@@ -19,6 +20,7 @@ class Answer
 {
     /**
      * Primary key.
+     *
      * @var int
      */
     #[ORM\Id]
@@ -28,6 +30,7 @@ class Answer
 
     /**
      * Created at.
+     *
      * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
@@ -37,6 +40,7 @@ class Answer
 
     /**
      * Updated at.
+     *
      * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
@@ -46,6 +50,7 @@ class Answer
 
     /**
      * Content.
+     *
      * @var string
      */
     #[ORM\Column(type: 'text', nullable: true)]
@@ -78,6 +83,7 @@ class Answer
 
     /**
      * Relation to question.
+     *
      * @var Question
      */
     #[ORM\JoinColumn(nullable: false)]
@@ -85,8 +91,7 @@ class Answer
     private Question $question;
 
     /**
-     * Getter for id.
-     * @return int|null
+     * @return int|null int
      */
     public function getId(): ?int
     {
@@ -94,8 +99,7 @@ class Answer
     }
 
     /**
-     * Get createdAt.
-     * @return DateTimeImmutable|null
+     * @return DateTimeImmutable|null dateTime
      */
     public function getCreatedAt(): ?DateTimeImmutable
     {
@@ -104,9 +108,8 @@ class Answer
 
     /**
      * Setter for createdAt.
-     * @param DateTimeImmutable|null $createdAt
      *
-     * @return void
+     * @param DateTimeImmutable|null $createdAt createdAt
      */
     public function setCreatedAt(?DateTimeImmutable $createdAt): void
     {
@@ -114,8 +117,7 @@ class Answer
     }
 
     /**
-     * Get updatedAt.
-     * @return DateTimeImmutable|null
+     * @return DateTimeImmutable|null dateTime
      */
     public function getUpdatedAt(): ?DateTimeImmutable
     {
@@ -124,9 +126,8 @@ class Answer
 
     /**
      * Setter for updatedAt.
-     * @param DateTimeImmutable|null $updatedAt
      *
-     * @return void
+     * @param DateTimeImmutable|null $updatedAt updatedAt
      */
     public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
     {
@@ -134,8 +135,7 @@ class Answer
     }
 
     /**
-     * Get content.
-     * @return string|null
+     * @return string|null string
      */
     public function getContent(): ?string
     {
@@ -144,9 +144,8 @@ class Answer
 
     /**
      * Set content.
-     * @param string $content
      *
-     * @return void
+     * @param string $content content
      */
     public function setContent(string $content): void
     {
@@ -154,8 +153,7 @@ class Answer
     }
 
     /**
-     * Check if isBest == true.
-     * @return bool|null
+     * @return bool|null bool
      */
     public function isBest(): ?bool
     {
@@ -164,9 +162,8 @@ class Answer
 
     /**
      * Setter for isBest, $best param = true or false.
-     * @param bool $best
      *
-     * @return void
+     * @param bool $best best
      */
     public function setBest(bool $best): void
     {
@@ -174,8 +171,7 @@ class Answer
     }
 
     /**
-     * Getter for email.
-     * @return string|null
+     * @return string|null string
      */
     public function getEmail(): ?string
     {
@@ -184,9 +180,8 @@ class Answer
 
     /**
      * Setter for email.
-     * @param string $email
      *
-     * @return void
+     * @param string $email email
      */
     public function setEmail(string $email): void
     {
@@ -194,8 +189,7 @@ class Answer
     }
 
     /**
-     * Get nickname.
-     * @return string|null
+     * @return string|null string
      */
     public function getNickname(): ?string
     {
@@ -204,9 +198,8 @@ class Answer
 
     /**
      * Set nickname.
-     * @param string $nickname
      *
-     * @return void
+     * @param string $nickname nickname
      */
     public function setNickname(string $nickname): void
     {
@@ -214,8 +207,7 @@ class Answer
     }
 
     /**
-     * Get relation to question.
-     * @return Question|null
+     * @return Question|null Question
      */
     public function getQuestion(): ?Question
     {
@@ -224,9 +216,8 @@ class Answer
 
     /**
      * Set question (relation).
-     * @param Question|null $question
      *
-     * @return void
+     * @param Question|null $question question
      */
     public function setQuestion(?Question $question): void
     {

@@ -2,6 +2,7 @@
 /**
  * Question entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\QuestionRepository;
@@ -21,6 +22,7 @@ class Question
 {
     /**
      * Primary key.
+     *
      * @var int|null
      */
     #[ORM\Id]
@@ -30,6 +32,7 @@ class Question
 
     /**
      * Created at.
+     *
      * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
@@ -39,6 +42,7 @@ class Question
 
     /**
      * Updated at.
+     *
      * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
@@ -48,6 +52,7 @@ class Question
 
     /**
      * Question title.
+     *
      * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
@@ -58,6 +63,7 @@ class Question
 
     /**
      * Content.
+     *
      * @var string|null
      */
     #[ORM\Column(type: 'text', nullable: true)]
@@ -66,6 +72,7 @@ class Question
 
     /**
      * Author's email.
+     *
      * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
@@ -74,6 +81,7 @@ class Question
 
     /**
      * Author's nickname.
+     *
      * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
@@ -82,6 +90,7 @@ class Question
 
     /**
      * Relation to category.
+     *
      * @var Category
      */
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'questions')]
@@ -100,8 +109,7 @@ class Question
     }
 
     /**
-     * Getter for id.
-     * @return int|null
+     * @return int|null int
      */
     public function getId(): ?int
     {
@@ -109,8 +117,7 @@ class Question
     }
 
     /**
-     * Getter for createdAt.
-     * @return DateTimeImmutable|null
+     * @return DateTimeImmutable|null dateTime
      */
     public function getCreatedAt(): ?DateTimeImmutable
     {
@@ -118,10 +125,7 @@ class Question
     }
 
     /**
-     * Setter for createdAt.
-     * @param DateTimeImmutable|null $createdAt
-     *
-     * @return void
+     * @param DateTimeImmutable|null $createdAt createdAt
      */
     public function setCreatedAt(?DateTimeImmutable $createdAt): void
     {
@@ -129,8 +133,7 @@ class Question
     }
 
     /**
-     * Getter for updatedAt.
-     * @return DateTimeImmutable|null
+     * @return DateTimeImmutable|null dateTime
      */
     public function getUpdatedAt(): ?DateTimeImmutable
     {
@@ -138,8 +141,7 @@ class Question
     }
 
     /**
-     * Setter for updatedAt.
-     * @param DateTimeImmutable|null $updatedAt
+     * @param DateTimeImmutable|null $updatedAt updatedAt
      */
     public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
     {
@@ -147,8 +149,7 @@ class Question
     }
 
     /**
-     * Getter for question title.
-     * @return string|null
+     * @return string|null string
      */
     public function getTitle(): ?string
     {
@@ -156,10 +157,7 @@ class Question
     }
 
     /**
-     * Setter for question title.
-     * @param string|null $title
-     *
-     * @return void
+     * @param string|null $title title
      */
     public function setTitle(?string $title): void
     {
@@ -167,8 +165,7 @@ class Question
     }
 
     /**
-     * Getter for content.
-     * @return string|null
+     * @return string|null string
      */
     public function getContent(): ?string
     {
@@ -177,9 +174,8 @@ class Question
 
     /**
      * Setter for content.
-     * @param string|null $content
      *
-     * @return void
+     * @param string|null $content content
      */
     public function setContent(?string $content): void
     {
@@ -187,8 +183,7 @@ class Question
     }
 
     /**
-     * Get email.
-     * @return string|null
+     * @return string|null string
      */
     public function getEmail(): ?string
     {
@@ -196,10 +191,7 @@ class Question
     }
 
     /**
-     * Set email.
-     * @param string $email
-     *
-     * @return void
+     * @param string $email email
      */
     public function setEmail(string $email): void
     {
@@ -207,8 +199,7 @@ class Question
     }
 
     /**
-     * Get nickname.
-     * @return string|null
+     * @return string|null string
      */
     public function getNickname(): ?string
     {
@@ -216,10 +207,9 @@ class Question
     }
 
     /**
-     * Set nickname.
-     * @param string $nickname
+     * Setter for nickname.
      *
-     * @return void
+     * @param string $nickname nickname
      */
     public function setNickname(string $nickname): void
     {
@@ -227,8 +217,7 @@ class Question
     }
 
     /**
-     * Get relation to category.
-     * @return Category|null
+     * @return Category|null category
      */
     public function getCategory(): ?Category
     {
@@ -236,10 +225,7 @@ class Question
     }
 
     /**
-     * Setter for category relation.
-     * @param Category|null $category
-     *
-     * @return void
+     * @param Category|null $category category
      */
     public function setCategory(?Category $category): void
     {
@@ -255,9 +241,7 @@ class Question
     }
 
     /**
-     * Add answer.
-     *
-     * @param Answer $answer
+     * @param Answer $answer answer
      *
      * @return $this
      */
@@ -272,9 +256,7 @@ class Question
     }
 
     /**
-     * Remove answer.
-     *
-     * @param Answer $answer
+     * @param Answer $answer answer
      *
      * @return $this
      */

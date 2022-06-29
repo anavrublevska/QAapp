@@ -25,10 +25,8 @@ class AnswerType extends AbstractType
      *
      * @see FormTypeExtensionInterface::buildForm()
      *
-     * @param FormBuilderInterface $builder
-     * @param array<string, mixed> $options
-     *
-     * @return void
+     * @param FormBuilderInterface $builder builder
+     * @param array<string, mixed> $options options
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -56,27 +54,10 @@ class AnswerType extends AbstractType
                     'required' => true,
                 ]
             );
-//        $builder->add(
-//            'question',
-//            EntityType::class,
-//            [
-//                'class' => Question::class,
-//                'choice_label' => function ($question): string {
-//                    return $question->getTitle();
-//                },
-//                'label' => 'label.question',
-//                'placeholder' => 'label.none',
-//                'required' => true,
-//            ]
-//        );
     }
 
     /**
-     * Configures options.
-     *
-     * @param OptionsResolver $resolver
-     *
-     * @return void
+     * @param OptionsResolver $resolver resolver
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
@@ -89,7 +70,7 @@ class AnswerType extends AbstractType
      * The block prefix defaults to the underscored short class name with
      * the "Type" suffix removed (e.g. "UserProfileType" => "user_profile").
      *
-     * @return string
+     * @return string string
      */
     public function getBlockPrefix(): string
     {

@@ -34,11 +34,9 @@ class CategoryService implements CategoryServiceInterface
     private PaginatorInterface $paginator;
 
     /**
-     * Constructor.
-     *
-     * @param CategoryRepository $categoryRepository
-     * @param QuestionRepository $questionRepository
-     * @param PaginatorInterface $paginator          Paginator
+     * @param CategoryRepository $categoryRepository categoryRepository
+     * @param QuestionRepository $questionRepository questionRepository
+     * @param PaginatorInterface $paginator          paginator
      */
     public function __construct(CategoryRepository $categoryRepository, QuestionRepository $questionRepository, PaginatorInterface $paginator)
     {
@@ -70,11 +68,6 @@ class CategoryService implements CategoryServiceInterface
      */
     public function save(Category $category): void
     {
-//        if ($category->getId() == null) {
-//            $category->setCreatedAt(new \DateTimeImmutable());
-//        }
-//        $category->setUpdatedAt(new \DateTimeImmutable());
-
         $this->categoryRepository->save($category);
     }
 
@@ -97,11 +90,7 @@ class CategoryService implements CategoryServiceInterface
     }
 
     /**
-     * Delete category.
-     *
-     * @param Category $category
-     *
-     * @return void
+     * @param Category $category category
      */
     public function delete(Category $category): void
     {

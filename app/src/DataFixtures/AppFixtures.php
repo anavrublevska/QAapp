@@ -2,6 +2,7 @@
 /**
  * App Fixtures.
  */
+
 namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -15,9 +16,7 @@ class AppFixtures extends Fixture
     /**
      * Load function.
      *
-     * @param ObjectManager $manager
-     *
-     * @return void
+     * @param ObjectManager $manager Object Manager
      */
     public function load(ObjectManager $manager): void
     {

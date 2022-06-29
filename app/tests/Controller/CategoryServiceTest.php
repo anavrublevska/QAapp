@@ -20,9 +20,8 @@ class CategoryServiceTest extends WebTestCase
      */
     private ?CategoryService $categoryService;
 
-
     /**
-     * @return void
+     * @return void void
      */
     public function setUp(): void
     {
@@ -33,7 +32,7 @@ class CategoryServiceTest extends WebTestCase
     /**
      * Test GetPaginatedList.
      *
-     * @return void
+     * @return void void
      */
     public function testGetPaginatedList(): void
     {
@@ -47,7 +46,7 @@ class CategoryServiceTest extends WebTestCase
         $i = 0;
         while ($i < $dataSetSize) {
             $category = new Category();
-            $category->setName('Categoryx' . $i);
+            $category->setName('Categoryx'.$i);
             $category->setCreatedAt(new \DateTimeImmutable('now'));
             $category->setUpdatedAt(new \DateTimeImmutable('now'));
             $categoryRepository->save($category);
@@ -59,6 +58,5 @@ class CategoryServiceTest extends WebTestCase
 
         // then
         $this->assertEquals($expectedResultSize, count($result));
-
     }
 }

@@ -2,6 +2,7 @@
 /**
  * User Repository.
  */
+
 namespace App\Repository;
 
 use App\Entity\User;
@@ -22,9 +23,7 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
     /**
-     * Constructor.
-     *
-     * @param ManagerRegistry $registry
+     * @param ManagerRegistry $registry registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -32,12 +31,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * Add.
-     *
-     * @param User $entity
-     * @param bool $flush
-     *
-     * @return void
+     * @param User $entity entity
+     * @param bool $flush  flush
      */
     public function add(User $entity, bool $flush = false): void
     {
@@ -49,12 +44,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * Remove.
-     *
-     * @param User $entity
-     * @param bool $flush
-     *
-     * @return void
+     * @param User $entity entity
+     * @param bool $flush  flush
      */
     public function remove(User $entity, bool $flush = false): void
     {
@@ -66,12 +57,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * Used to upgrade (rehash) the user's password automatically over time.
-     *
-     * @param PasswordAuthenticatedUserInterface $user
-     * @param string                             $newHashedPassword
-     *
-     * @return void
+     * @param PasswordAuthenticatedUserInterface $user              userInterface
+     * @param string                             $newHashedPassword hashedPassword
      */
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
     {
@@ -85,38 +72,11 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * @param User $user
-     *
-     * @return void
+     * @param User $user user
      */
     public function save(User $user): void
     {
         $this->_em->persist($user);
         $this->_em->flush($user);
     }
-
-//    /**
-//     * @return User[] Returns an array of User objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('u')
-//            ->andWhere('u.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('u.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?User
-//    {
-//        return $this->createQueryBuilder('u')
-//            ->andWhere('u.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

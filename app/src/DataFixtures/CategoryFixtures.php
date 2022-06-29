@@ -15,7 +15,6 @@ class CategoryFixtures extends AbstractBaseFixtures
 {
     /**
      * Load.
-     *
      */
     public function loadData(): void
     {

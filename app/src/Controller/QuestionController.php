@@ -2,6 +2,7 @@
 /**
  * Question controller.
  */
+
 namespace App\Controller;
 
 use App\Entity\Answer;
@@ -31,9 +32,6 @@ class QuestionController extends AbstractController
      */
     private QuestionService $questionService;
 
-    /**
-     * @var AnswerService
-     */
     private AnswerService $answerService;
 
     /**
@@ -43,9 +41,10 @@ class QuestionController extends AbstractController
 
     /**
      * Constructor.
-     * @param QuestionServiceInterface $questionService
-     * @param AnswerService            $answerService
-     * @param TranslatorInterface      $translator
+     *
+     * @param QuestionServiceInterface $questionService Question Service
+     * @param AnswerService            $answerService   Answer Service
+     * @param TranslatorInterface      $translator      Translator
      */
     public function __construct(QuestionServiceInterface $questionService, AnswerService $answerService, TranslatorInterface $translator)
     {
@@ -58,13 +57,11 @@ class QuestionController extends AbstractController
      * Index questions.
      *
      * @param Request $request HTTP Request
+     *
      * @return Response HTTP response
      */
     #[IsGranted('ROLE_ADMIN')]
-    #[Route(
-        name: 'question_index',
-        methods: 'GET'
-    )]
+    #[Route(name: 'question_index', methods: 'GET')]
     public function index(Request $request): Response
     {
         $pagination = $this->questionService->getPaginatedList(
@@ -80,10 +77,14 @@ class QuestionController extends AbstractController
      * @param Request          $request
      * @param Question         $question
      * @param AnswerRepository $answerRepository
+     *
      * @return Response
      */
     #[Route(
-        '/{id}', name: 'question_show', requirements: ['id' => '[1-9]\d*'], methods: ['GET', 'POST']
+        '/{id}',
+        name: 'question_show',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: ['GET', 'POST']
     )]
     public function show(Request $request, Question $question, AnswerRepository $answerRepository): Response
     {
@@ -107,7 +108,8 @@ class QuestionController extends AbstractController
         return $this->render(
             'answer/index.html.twig',
             ['question' => $question,
-                'form' => $form->createView()]
+                'form' => $form->createView(),
+            ]
         );
     }
 
@@ -119,7 +121,7 @@ class QuestionController extends AbstractController
      * @return Response HTTP response
      */
     #[IsGranted('ROLE_ADMIN')]
-    #[Route('/create', name: 'question_create', methods: 'GET|POST', )]
+    #[Route('/create', name: 'question_create', methods: 'GET|POST')]
     public function create(Request $request): Response
     {
         $question = new Question();
@@ -149,7 +151,7 @@ class QuestionController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request $request HTTP request
+     * @param Request  $request  HTTP request
      * @param Question $question
      *
      * @return Response HTTP response
@@ -158,10 +160,17 @@ class QuestionController extends AbstractController
     #[Route('/{id}/edit', name: 'question_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function edit(Request $request, Question $question): Response
     {
-        $form = $this->createForm(QuestionType::class, $question, [
-            'method' => 'PUT',
-            'action' => $this->generateUrl('question_edit', ['id' => $question->getId()]),
-        ]);
+        $form = $this->createForm(
+            QuestionType::class,
+            $question,
+            [
+                'method' => 'PUT',
+                'action' => $this->generateUrl(
+                    'question_edit',
+                    ['id' => $question->getId()]
+                ),
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -184,7 +193,7 @@ class QuestionController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request $request HTTP request
+     * @param Request  $request  HTTP request
      * @param Question $question
      *
      * @return Response HTTP response
@@ -193,7 +202,7 @@ class QuestionController extends AbstractController
     #[Route('/{id}/delete', name: 'question_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Question $question): Response
     {
-        if(!$this->questionService->canBeDeleted($question)) {
+        if (!$this->questionService->canBeDeleted($question)) {
             $this->addFlash(
                 'warning',
                 $this->translator->trans('message.question_contains_answers')
@@ -224,5 +233,4 @@ class QuestionController extends AbstractController
             'question' => $question,
         ]);
     }
-
 }

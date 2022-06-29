@@ -2,6 +2,7 @@
 /**
  * Login form authenticator.
  */
+
 namespace App\Security;
 
 use Exception;
@@ -10,7 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
@@ -46,9 +46,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     private UrlGeneratorInterface $urlGenerator;
 
     /**
-     * Constructor.
-     *
-     * @param UrlGeneratorInterface $urlGenerator
+     * @param UrlGeneratorInterface $urlGenerator urlGenerator
      */
     public function __construct(UrlGeneratorInterface $urlGenerator)
     {
@@ -56,9 +54,9 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     }
 
     /**
-     * @param Request $request
+     * @param Request $request request
      *
-     * @return bool
+     * @return bool bool
      */
     public function supports(Request $request): bool
     {
@@ -67,21 +65,9 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     }
 
     /**
-     * Create a passport for the current request.
+     * @param Request $request request
      *
-     * The passport contains the user, credentials and any additional information
-     * that has to be checked by the Symfony Security system. For example, a login
-     * form authenticator will probably return a passport containing the user, the
-     * presented password and the CSRF token value.
-     *
-     * You may throw any AuthenticationException in this method in case of error (e.g.
-     * a UserNotFoundException when the user cannot be found).
-     *
-     * @throws AuthenticationException
-     *
-     * @param Request $request
-     *
-     * @return Passport
+     * @return Passport passport
      */
     public function authenticate(Request $request): Passport
     {

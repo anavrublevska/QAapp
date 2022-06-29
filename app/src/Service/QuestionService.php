@@ -34,11 +34,9 @@ class QuestionService implements QuestionServiceInterface
     private AnswerRepository $answerRepository;
 
     /**
-     * Constructor.
-     *
-     * @param QuestionRepository $questionRepository
-     * @param AnswerRepository   $answerRepository
-     * @param PaginatorInterface $paginator
+     * @param QuestionRepository $questionRepository questionRepository
+     * @param AnswerRepository   $answerRepository   answerRepository
+     * @param PaginatorInterface $paginator          paginator
      */
     public function __construct(QuestionRepository $questionRepository, AnswerRepository $answerRepository, PaginatorInterface $paginator)
     {
@@ -64,9 +62,7 @@ class QuestionService implements QuestionServiceInterface
     }
 
     /**
-     * Save entity.
-     *
-     * @param Question $question
+     * @param Question $question question
      */
     public function save(Question $question): void
     {
@@ -74,9 +70,9 @@ class QuestionService implements QuestionServiceInterface
     }
 
     /**
-     * @param Question $question
+     * @param Question $question question
      *
-     * @return bool
+     * @return bool bool
      */
     public function canBeDeleted(Question $question): bool
     {
@@ -90,9 +86,7 @@ class QuestionService implements QuestionServiceInterface
     }
 
     /**
-     * Delete entity.
-     *
-     * @param Question $question
+     * @param Question $question question
      */
     public function delete(Question $question): void
     {

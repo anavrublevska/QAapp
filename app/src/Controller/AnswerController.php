@@ -37,8 +37,9 @@ class AnswerController extends AbstractController
 
     /**
      * Constructor.
-     * @param AnswerServiceInterface $answerService
-     * @param TranslatorInterface    $translator
+     *
+     * @param AnswerServiceInterface $answerService Service Interface
+     * @param TranslatorInterface    $translator    Translator
      */
     public function __construct(AnswerServiceInterface $answerService, TranslatorInterface $translator)
     {

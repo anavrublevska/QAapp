@@ -23,16 +23,12 @@ interface QuestionServiceInterface
     public function getPaginatedList(int $page): PaginationInterface;
 
     /**
-     * Save entity.
-     *
-     * @param Question $question
+     * @param Question $question question
      */
     public function save(Question $question): void;
 
     /**
-     * Delete entity.
-     *
-     * @param Question $question
+     * @param Question $question question
      */
     public function delete(Question $question): void;
 }

@@ -26,10 +26,8 @@ class AnswerService implements AnswerServiceInterface
     private PaginatorInterface $paginator;
 
     /**
-     * Constructor.
-     *
-     * @param AnswerRepository   $answerRepository
-     * @param PaginatorInterface $paginator        Paginator
+     * @param AnswerRepository   $answerRepository answerRepository
+     * @param PaginatorInterface $paginator        paginator
      */
     public function __construct(AnswerRepository $answerRepository, PaginatorInterface $paginator)
     {
@@ -54,9 +52,7 @@ class AnswerService implements AnswerServiceInterface
     }
 
     /**
-     * Save entity.
-     *
-     * @param Answer $answer
+     * @param Answer $answer answer
      */
     public function save(Answer $answer): void
     {
@@ -64,9 +60,7 @@ class AnswerService implements AnswerServiceInterface
     }
 
     /**
-     * Delete entity.
-     *
-     * @param Answer $answer
+     * @param Answer $answer answer
      */
     public function delete(Answer $answer): void
     {

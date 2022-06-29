@@ -10,7 +10,7 @@ use App\Entity\Question;
 use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-//use App\Entity\User;
+// use App\Entity\User;
 
 /**
  * Class QuestionFixtures.
@@ -57,7 +57,6 @@ class QuestionFixtures extends AbstractBaseFixtures implements DependentFixtureI
      * on which the implementing class depends on.
      *
      * @return string[] of dependencies
-     *
      */
     public function getDependencies(): array
     {

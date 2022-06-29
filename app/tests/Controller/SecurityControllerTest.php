@@ -19,13 +19,16 @@ class SecurityControllerTest extends WebTestCase
     protected KernelBrowser $httpClient;
 
     /**
-     * @return void
+     * @return void void
      */
     public function setUp(): void
     {
         $this->httpClient = static::createClient();
     }
 
+    /**
+     * @return void void
+     */
     public function testLoginRoute(): void
     {
         // given
@@ -54,8 +57,4 @@ class SecurityControllerTest extends WebTestCase
         $resultHttpStatusCode = $this->httpClient->getResponse()->getStatusCode();
         $this->assertEquals($expectedStatusCode, $resultHttpStatusCode);
     }
-
-
-
-
 }

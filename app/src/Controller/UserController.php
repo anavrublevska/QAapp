@@ -25,14 +25,11 @@ class UserController extends AbstractController
 {
     /**
      * User service.
-     * @var UserService
      */
     private UserService $userService;
 
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
 
@@ -42,11 +39,9 @@ class UserController extends AbstractController
     private UserPasswordHasherInterface $passwordHasher;
 
     /**
-     * Constructor.
-     *
-     * @param UserService                 $userService
-     * @param TranslatorInterface         $translator
-     * @param UserPasswordHasherInterface $passwordHasher
+     * @param UserService                 $userService    User Service
+     * @param TranslatorInterface         $translator     Translator
+     * @param UserPasswordHasherInterface $passwordHasher Password Hasher
      */
     public function __construct(UserService $userService, TranslatorInterface $translator, UserPasswordHasherInterface $passwordHasher)
     {
@@ -54,7 +49,6 @@ class UserController extends AbstractController
         $this->userService = $userService;
         $this->translator = $translator;
     }
-
 
     /**
      * User's account.
@@ -77,7 +71,6 @@ class UserController extends AbstractController
             ['user' => $user]
         );
     }
-
 
     /**
      * Edit email in my account.
